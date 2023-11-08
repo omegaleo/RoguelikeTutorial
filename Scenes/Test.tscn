@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2voxytmx7huf"]
+[gd_scene load_steps=10 format=3 uid="uid://b2voxytmx7huf"]
 
 [ext_resource type="Script" path="res://Runtime/Player.cs" id="1_cw7lw"]
+[ext_resource type="Script" path="res://Runtime/CameraAnchor.cs" id="2_f05p2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xilwt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -53,7 +54,10 @@ mesh = SubResource("CapsuleMesh_78nqy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("ConvexPolygonShape3D_n8ulr")
 
-[node name="CameraAnchor" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D(-4.37114e-08, 0.464842, -0.885394, 0, 0.885394, 0.464842, 1, 2.03189e-08, -3.87018e-08, -7.09, 3.21324, 0)
+[node name="CameraAnchor" type="Node3D" parent="CharacterBody3D" node_paths=PackedStringArray("camera")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.446045, 0)
+script = ExtResource("2_f05p2")
+camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

@@ -4,6 +4,35 @@ using System;
 public partial class InputManager : InstancedNode<InputManager>
 {
 	public Action<Vector3> OnMovement;
+	public Action<Vector3> OnCameraMovement;
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		// Make sure we're capturing the mouse so that it doesn't go outside the window and doesn't appear on screen
+		if (@event is InputEventMouseButton)
+		{
+			Input.MouseMode = Input.MouseModeEnum.Captured;
+		}
+		// If we press the key assigned to ui_cancel, it'll release the mouse so it can got outside the window
+		else if (@event.IsActionPressed("ui_cancel"))
+		{
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+		}
+
+		// If we're capturing the mouse
+		if (Input.MouseMode == Input.MouseModeEnum.Captured)
+		{
+			// If the mouse has moved
+			if (@event is InputEventMouseMotion motion)
+			{
+				// TODO: turn into an option later on
+				var sensitivity = 0.01f; // Mouse sensitivity
+				OnCameraMovement.Invoke(new Vector3(motion.Relative.X * sensitivity, motion.Relative.Y * sensitivity, 0f));
+			}
+		}
+		
+		base._UnhandledInput(@event);
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
