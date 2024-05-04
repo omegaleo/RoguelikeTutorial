@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Save" load_steps=3 format=3 uid="uid://b3jsk2mhiato7"]
+
+[ext_resource type="Resource" uid="uid://b1kgg8h2wiip2" path="res://Resources/TestItem.tres" id="1_volfe"]
+[ext_resource type="Script" path="res://Runtime/ResourceTypes/Save.cs" id="1_wjemv"]
+
+[resource]
+script = ExtResource("1_wjemv")
+Position = Vector3(0, 0, 0)
+Inventory = Array[Object]([ExtResource("1_volfe")])

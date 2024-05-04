@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b1kgg8h2wiip2"]
 
-[ext_resource type="Script" path="res://Runtime/Item.cs" id="1_ha3y2"]
+[ext_resource type="Script" path="res://Runtime/ResourceTypes/Item.cs" id="1_ha3y2"]
 
 [resource]
 script = ExtResource("1_ha3y2")
-Name = ""
+Name = "Test Item"

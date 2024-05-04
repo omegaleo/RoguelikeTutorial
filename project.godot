@@ -12,12 +12,13 @@ config_version=5
 
 config/name="Roguelike"
 run/main_scene="res://Scenes/Test.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 InputManager="*res://Runtime/InputManager.cs"
+SaveHandler="*res://Runtime/SaveHandler.cs"
 
 [dotnet]
 

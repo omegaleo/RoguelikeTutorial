@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2voxytmx7huf"]
+[gd_scene load_steps=12 format=3 uid="uid://b2voxytmx7huf"]
 
 [ext_resource type="Script" path="res://Runtime/Player.cs" id="1_cw7lw"]
 [ext_resource type="Script" path="res://Runtime/CameraAnchor.cs" id="2_f05p2"]
+[ext_resource type="Script" path="res://Runtime/InventoryHandler.cs" id="3_cac65"]
+[ext_resource type="Resource" uid="uid://b1kgg8h2wiip2" path="res://Resources/TestItem.tres" id="4_c3lrk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xilwt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -44,20 +46,24 @@ mesh = SubResource("PlaneMesh_sm47n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gy03m")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("_inventory")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13176, 0)
 script = ExtResource("1_cw7lw")
+_inventory = NodePath("Inventory")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_78nqy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("ConvexPolygonShape3D_n8ulr")
 
-[node name="CameraAnchor" type="Node3D" parent="CharacterBody3D" node_paths=PackedStringArray("camera")]
+[node name="CameraAnchor" type="Node3D" parent="Player" node_paths=PackedStringArray("camera")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.446045, 0)
 script = ExtResource("2_f05p2")
 camera = NodePath("Camera3D")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraAnchor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="Player/CameraAnchor"]
+
+[node name="Inventory" type="Node" parent="Player"]
+script = ExtResource("3_cac65")
+testItem = ExtResource("4_c3lrk")
