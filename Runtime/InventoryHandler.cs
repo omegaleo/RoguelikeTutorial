@@ -45,14 +45,12 @@ public partial class InventoryHandler : Node
 				else
 				{
 					GD.PrintErr($"Not enough items in inventory of type {item.Name}!");
-					return;
 				}
 			}
 		}
 		else
 		{
 			GD.PrintErr($"Item not found {item.Name}!");
-			return;
 		}
 	}
 
